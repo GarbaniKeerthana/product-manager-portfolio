@@ -1,0 +1,828 @@
+
+/* GOOGLE MAPS — COLLEGE MODE CASE STUDY */
+
+.google-page {
+  min-height: 100vh;
+  padding: 55px 8% 30px;
+  background: #080f20;
+  color: #f1f6ff;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.google-back {
+  display: inline-block;
+  margin-bottom: 75px;
+  color: #9bcaff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.google-back:hover {
+  color: #fff;
+}
+
+.google-header {
+  max-width: 820px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.google-eyebrow,
+.google-section-number {
+  color: #8bbcff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+}
+
+.google-header h1 {
+  margin: 22px 0;
+  font-size: clamp(34px, 4.5vw, 60px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+.google-subtitle {
+  margin: 0 auto 18px;
+  color: #e6f1ff;
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.6;
+}
+
+.google-intro {
+  max-width: 650px;
+  margin: 0 auto 24px;
+  color: #b7c6da;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.google-project-label {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid #344968;
+  border-radius: 30px;
+  color: #a8c8ec;
+  font-size: 12px;
+}
+
+/* ANIMATED CAMPUS MAP */
+
+.google-demo {
+  max-width: 1000px;
+  margin: 0 auto 85px;
+  padding: 25px;
+  border: 1px solid #304362;
+  border-radius: 24px;
+  background: #101d33;
+  overflow: hidden;
+}
+
+.google-demo-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #9fb8d7;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.campus-map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  min-height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 49.7%,
+      #d5e0dc 49.7%,
+      #d5e0dc 50.3%,
+      transparent 50.3%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 49.7%,
+      #d5e0dc 49.7%,
+      #d5e0dc 50.3%,
+      transparent 50.3%
+    ),
+    #dce9df;
+}
+
+.campus-map::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 88px,
+      rgba(255, 255, 255, 0.18) 89px,
+      rgba(255, 255, 255, 0.18) 92px
+    );
+  pointer-events: none;
+}
+
+.campus-path {
+  position: absolute;
+  background: #f8f6ed;
+  border: 1px solid #d5d9d2;
+  z-index: 1;
+}
+
+.campus-path-one {
+  top: 68%;
+  left: 5%;
+  width: 88%;
+  height: 23px;
+  transform: rotate(-15deg);
+}
+
+.campus-path-two {
+  top: 10%;
+  left: 51%;
+  width: 23px;
+  height: 85%;
+  transform: rotate(24deg);
+}
+
+.campus-building {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 3px solid #a5b8c2;
+  border-radius: 9px;
+  background: #d5e4ef;
+  box-shadow: 0 5px 0 rgba(57, 83, 99, 0.12);
+  color: #3a5264;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.building-library {
+  top: 13%;
+  left: 13%;
+  width: 21%;
+  height: 24%;
+}
+
+.building-science {
+  top: 13%;
+  right: 10%;
+  width: 24%;
+  height: 30%;
+}
+
+.building-student {
+  bottom: 10%;
+  right: 14%;
+  width: 22%;
+  height: 22%;
+}
+
+.building-entrance {
+  position: absolute;
+  bottom: -14px;
+  left: 42%;
+  padding: 4px 7px;
+  border-radius: 5px;
+  background: #1d8f6e;
+  color: white;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.campus-route {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.animated-route {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-campus-route 4.5s ease forwards;
+}
+
+.student-marker {
+  position: absolute;
+  z-index: 5;
+  top: 78%;
+  left: 12%;
+  width: 22px;
+  height: 22px;
+  border: 4px solid white;
+  border-radius: 50%;
+  background: #4285f4;
+  box-shadow: 0 0 0 5px rgba(66, 133, 244, 0.2);
+  animation: walk-to-entrance 4.5s ease-in-out forwards;
+}
+
+.student-marker span {
+  display: none;
+}
+
+.entrance-pin {
+  position: absolute;
+  z-index: 6;
+  top: 38%;
+  left: 73%;
+  font-size: 28px;
+  opacity: 0;
+  animation: reveal-entrance 4.5s ease forwards;
+}
+
+.map-start-label {
+  position: absolute;
+  z-index: 5;
+  bottom: 9%;
+  left: 7%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: white;
+  color: #40556a;
+  font-size: 10px;
+}
+
+.google-demo-note {
+  margin: 18px 0 0;
+  color: #9aacc3;
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* ANIMATION */
+
+@keyframes draw-campus-route {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes walk-to-entrance {
+  0% {
+    left: 12%;
+    top: 78%;
+  }
+
+  25% {
+    left: 26%;
+    top: 78%;
+  }
+
+  50% {
+    left: 38%;
+    top: 63%;
+  }
+
+  75% {
+    left: 55%;
+    top: 63%;
+  }
+
+  100% {
+    left: 73%;
+    top: 43%;
+  }
+}
+
+@keyframes reveal-entrance {
+  0%, 75% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.8);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* CASE STUDY CONTENT */
+
+.google-content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.google-content section {
+  padding: 48px 0;
+  border-bottom: 1px solid #22314a;
+}
+
+.google-content h2 {
+  margin: 17px 0;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.5px;
+}
+
+.google-content p {
+  margin: 14px 0;
+  color: #b8c8dc;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.google-footer {
+  max-width: 760px;
+  margin: 75px auto 20px;
+  color: #7e91aa;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .google-page {
+    padding: 30px 5%;
+  }
+
+  .google-back {
+    margin-bottom: 50px;
+  }
+
+  .google-demo {
+    padding: 12px;
+  }
+
+  .campus-map {
+    min-height: 230px;
+  }
+
+  .campus-building {
+    font-size: 9px;
+  }
+
+  .building-entrance {
+    font-size: 7px;
+  }
+
+  .google-content section {
+    padding: 36px 0;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-route,
+  .student-marker,
+  .entrance-pin {
+    animation: none;
+  }
+
+  .animated-route {
+    stroke-dashoffset: 0;
+  }
+
+  .student-marker {
+    left: 73%;
+    top: 43%;
+  }
+
+  .entrance-pin {
+    opacity: 1;
+  }
+}
+
+/* GOOGLE MAPS — COLLEGE MODE CASE STUDY */
+
+.google-page {
+  min-height: 100vh;
+  padding: 55px 8% 30px;
+  background: #080f20;
+  color: #f1f6ff;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.google-back {
+  display: inline-block;
+  margin-bottom: 75px;
+  color: #9bcaff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.google-back:hover {
+  color: #fff;
+}
+
+.google-header {
+  max-width: 820px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.google-eyebrow,
+.google-section-number {
+  color: #8bbcff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+}
+
+.google-header h1 {
+  margin: 22px 0;
+  font-size: clamp(34px, 4.5vw, 60px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+.google-subtitle {
+  margin: 0 auto 18px;
+  color: #e6f1ff;
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.6;
+}
+
+.google-intro {
+  max-width: 650px;
+  margin: 0 auto 24px;
+  color: #b7c6da;
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.google-project-label {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid #344968;
+  border-radius: 30px;
+  color: #a8c8ec;
+  font-size: 12px;
+}
+
+/* ANIMATED CAMPUS MAP */
+
+.google-demo {
+  max-width: 1000px;
+  margin: 0 auto 85px;
+  padding: 25px;
+  border: 1px solid #304362;
+  border-radius: 24px;
+  background: #101d33;
+  overflow: hidden;
+}
+
+.google-demo-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #9fb8d7;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.campus-map {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  min-height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 49.7%,
+      #d5e0dc 49.7%,
+      #d5e0dc 50.3%,
+      transparent 50.3%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 49.7%,
+      #d5e0dc 49.7%,
+      #d5e0dc 50.3%,
+      transparent 50.3%
+    ),
+    #dce9df;
+}
+
+.campus-map::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 88px,
+      rgba(255, 255, 255, 0.18) 89px,
+      rgba(255, 255, 255, 0.18) 92px
+    );
+  pointer-events: none;
+}
+
+.campus-path {
+  position: absolute;
+  background: #f8f6ed;
+  border: 1px solid #d5d9d2;
+  z-index: 1;
+}
+
+.campus-path-one {
+  top: 68%;
+  left: 5%;
+  width: 88%;
+  height: 23px;
+  transform: rotate(-15deg);
+}
+
+.campus-path-two {
+  top: 10%;
+  left: 51%;
+  width: 23px;
+  height: 85%;
+  transform: rotate(24deg);
+}
+
+.campus-building {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border: 3px solid #a5b8c2;
+  border-radius: 9px;
+  background: #d5e4ef;
+  box-shadow: 0 5px 0 rgba(57, 83, 99, 0.12);
+  color: #3a5264;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.building-library {
+  top: 13%;
+  left: 13%;
+  width: 21%;
+  height: 24%;
+}
+
+.building-science {
+  top: 13%;
+  right: 10%;
+  width: 24%;
+  height: 30%;
+}
+
+.building-student {
+  bottom: 10%;
+  right: 14%;
+  width: 22%;
+  height: 22%;
+}
+
+.building-entrance {
+  position: absolute;
+  bottom: -14px;
+  left: 42%;
+  padding: 4px 7px;
+  border-radius: 5px;
+  background: #1d8f6e;
+  color: white;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.campus-route {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.animated-route {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-campus-route 4.5s ease forwards;
+}
+
+.student-marker {
+  position: absolute;
+  z-index: 5;
+  top: 78%;
+  left: 12%;
+  width: 22px;
+  height: 22px;
+  border: 4px solid white;
+  border-radius: 50%;
+  background: #4285f4;
+  box-shadow: 0 0 0 5px rgba(66, 133, 244, 0.2);
+  animation: walk-to-entrance 4.5s ease-in-out forwards;
+}
+
+.student-marker span {
+  display: none;
+}
+
+.entrance-pin {
+  position: absolute;
+  z-index: 6;
+  top: 38%;
+  left: 73%;
+  font-size: 28px;
+  opacity: 0;
+  animation: reveal-entrance 4.5s ease forwards;
+}
+
+.map-start-label {
+  position: absolute;
+  z-index: 5;
+  bottom: 9%;
+  left: 7%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: white;
+  color: #40556a;
+  font-size: 10px;
+}
+
+.google-demo-note {
+  margin: 18px 0 0;
+  color: #9aacc3;
+  font-size: 11px;
+  line-height: 1.7;
+  text-align: center;
+}
+
+/* ANIMATION */
+
+@keyframes draw-campus-route {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes walk-to-entrance {
+  0% {
+    left: 12%;
+    top: 78%;
+  }
+
+  25% {
+    left: 26%;
+    top: 78%;
+  }
+
+  50% {
+    left: 38%;
+    top: 63%;
+  }
+
+  75% {
+    left: 55%;
+    top: 63%;
+  }
+
+  100% {
+    left: 73%;
+    top: 43%;
+  }
+}
+
+@keyframes reveal-entrance {
+  0%, 75% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.8);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* CASE STUDY CONTENT */
+
+.google-content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.google-content section {
+  padding: 48px 0;
+  border-bottom: 1px solid #22314a;
+}
+
+.google-content h2 {
+  margin: 17px 0;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.5px;
+}
+
+.google-content p {
+  margin: 14px 0;
+  color: #b8c8dc;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.google-footer {
+  max-width: 760px;
+  margin: 75px auto 20px;
+  color: #7e91aa;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .google-page {
+    padding: 30px 5%;
+  }
+
+  .google-back {
+    margin-bottom: 50px;
+  }
+
+  .google-demo {
+    padding: 12px;
+  }
+
+  .campus-map {
+    min-height: 230px;
+  }
+
+  .campus-building {
+    font-size: 9px;
+  }
+
+  .building-entrance {
+    font-size: 7px;
+  }
+
+  .google-content section {
+    padding: 36px 0;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-route,
+  .student-marker,
+  .entrance-pin {
+    animation: none;
+  }
+
+  .animated-route {
+    stroke-dashoffset: 0;
+  }
+
+  .student-marker {
+    left: 73%;
+    top: 43%;
+  }
+
+  .entrance-pin {
+    opacity: 1;
+  }
+}

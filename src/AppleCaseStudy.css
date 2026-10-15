@@ -1,0 +1,593 @@
+.apple-page {
+  min-height: 100vh;
+  background: #080f20;
+  color: #f1f6ff;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  padding: 55px 8% 30px;
+}
+
+.apple-back {
+  display: inline-block;
+  color: #9bcaff;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 80px;
+}
+
+.apple-back:hover {
+  color: white;
+}
+
+.apple-page-header {
+  max-width: 800px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.apple-eyebrow,
+.section-number {
+  color: #8bbcff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.apple-page-header h1 {
+  font-size: clamp(38px, 5vw, 64px);
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin: 22px 0;
+}
+
+.apple-page-header p {
+  color: #b7c6da;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.apple-demo {
+  position: relative;
+  max-width: 900px;
+  min-height: 340px;
+  margin: 0 auto;
+  padding: 45px 35px;
+  border: 1px solid #243956;
+  border-radius: 24px;
+  background: radial-gradient(
+    ellipse at center,
+    #182a48 0%,
+    #0d172c 75%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  overflow: hidden;
+}
+
+.device {
+  position: relative;
+  z-index: 1;
+  width: 38%;
+  max-width: 300px;
+  flex-shrink: 0;
+}
+
+.device-label {
+  display: block;
+  color: #a9c0db;
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.device-screen {
+  min-height: 175px;
+  padding: 28px 15px;
+  border: 9px solid #333d50;
+  border-radius: 18px;
+  background: #0b1220;
+  box-shadow: 0 15px 35px #0005;
+}
+
+.code-line {
+  font-family: 'Consolas', monospace;
+  font-size: clamp(9px, 1.2vw, 12px);
+  line-height: 2.3;
+  color: #a9d5fa;
+  white-space: nowrap;
+}
+
+.selected-code {
+  background: rgba(99, 184, 255, 0.18);
+  border-radius: 3px;
+  animation: select-code 6s ease-in-out both;
+}
+
+@keyframes select-code {
+  0%, 12% {
+    background: transparent;
+  }
+  22%, 100% {
+    background: rgba(99, 184, 255, 0.18);
+  }
+}
+
+.transfer-animation {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+}
+
+.flying-code {
+  position: absolute;
+  left: 18%;
+  top: 51%;
+  font-family: 'Consolas', monospace;
+  font-size: 12px;
+  color: #dff2ff;
+  background: #2d6092;
+  border: 1px solid #83c7ff;
+  border-radius: 6px;
+  padding: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  animation: transfer-code 6s ease-in-out both;
+}
+
+.mini-pencil {
+  position: absolute;
+  left: 30%;
+  top: 39%;
+  font-size: 35px;
+  color: white;
+  transform: rotate(-40deg);
+  animation: pencil-move 6s ease-in-out both;
+}
+
+@keyframes transfer-code {
+  0%, 23% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.85);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(0, -10px) scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(300%, -10px) scale(1);
+  }
+  80%, 100% {
+    opacity: 0;
+    transform: translate(300%, 0) scale(0.85);
+  }
+}
+
+@keyframes pencil-move {
+  0% {
+    opacity: 0;
+    transform: translate(-30px, 50px) rotate(-40deg);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(-40deg);
+  }
+  30% {
+    transform: translate(0, -20px) rotate(-40deg);
+  }
+  70% {
+    transform: translate(260px, -20px) rotate(-40deg);
+  }
+  85%, 100% {
+    opacity: 0;
+    transform: translate(290px, 0) rotate(-40deg);
+  }
+}
+
+.pasted-code {
+  color: #9df2ca;
+  opacity: 0;
+  animation: show-paste 6s ease-in-out both;
+}
+
+@keyframes show-paste {
+  0%, 77% {
+    opacity: 0;
+  }
+  85%, 100% {
+    opacity: 1;
+  }
+}
+
+.apple-demo-caption {
+  color: #8497af;
+  text-align: center;
+  font-size: 12px;
+  margin: 18px 0 90px;
+}
+
+.apple-content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.apple-content section {
+  padding: 48px 0;
+  border-bottom: 1px solid #22314a;
+}
+
+.apple-content h2 {
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin: 17px 0;
+}
+
+.apple-content p {
+  color: #b8c8dc;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.apple-footer {
+  max-width: 760px;
+  margin: 75px auto 20px;
+  color: #7e91aa;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 650px) {
+  .apple-page {
+    padding: 30px 5%;
+  }
+
+  .apple-back {
+    margin-bottom: 55px;
+  }
+
+  .apple-demo {
+    padding: 25px 12px;
+    min-height: 230px;
+    gap: 8px;
+  }
+
+  .device {
+    width: 45%;
+  }
+
+  .device-screen {
+    padding: 16px 6px;
+    min-height: 125px;
+    border-width: 5px;
+  }
+
+  .code-line {
+    font-size: 7px;
+  }
+
+  .flying-code {
+    font-size: 7px;
+    padding: 4px;
+  }
+
+  .mini-pencil {
+    font-size: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selected-code,
+  .flying-code,
+  .mini-pencil,
+  .pasted-code {
+    animation: none;
+  }
+
+  .flying-code,
+  .mini-pencil {
+    display: none;
+  }
+
+  .pasted-code {
+    opacity: 1;
+  }
+}
+/* CP PENCIL — PRODUCT DEMONSTRATION */
+
+.cp-demo {
+  max-width: 1000px;
+  margin: 0 auto 80px;
+  padding: 40px 28px 22px;
+  background: radial-gradient(ellipse at center, #192e4c, #0d172b 75%);
+  border: 1px solid #304362;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.cp-scene {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  min-height: 290px;
+}
+
+.cp-device {
+  width: 35%;
+  min-width: 0;
+  position: relative;
+}
+
+.cp-device-label {
+  display: block;
+  margin-bottom: 16px;
+  color: #a8c3e3;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  text-align: center;
+}
+
+.cp-tablet-frame {
+  padding: 10px;
+  border: 5px solid #68798d;
+  border-radius: 17px;
+  background: #1b2637;
+}
+
+.cp-screen {
+  position: relative;
+  min-height: 155px;
+  padding: 20px 10px;
+  border-radius: 7px;
+  background: #091321;
+  overflow: hidden;
+}
+
+.cp-code {
+  display: block;
+  font-family: Consolas, monospace;
+  font-size: clamp(8px, 1vw, 12px);
+  line-height: 2;
+  color: #b9dcff;
+  white-space: nowrap;
+}
+
+.cp-highlight {
+  animation: cp-select 5.5s ease forwards;
+}
+
+.cp-feedback,
+.cp-paste-feedback {
+  display: block;
+  margin-top: 16px;
+  font-size: 10px;
+  color: #8fe3bd;
+  opacity: 0;
+}
+
+.cp-feedback {
+  animation: cp-show-copy 5.5s ease forwards;
+}
+
+.cp-pencil-area {
+  position: relative;
+  width: 25%;
+  min-width: 0;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cp-pencil {
+  position: relative;
+  width: 185px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  transform: rotate(-35deg);
+  transform-origin: center;
+  animation: cp-travel 5.5s ease-in-out forwards;
+  z-index: 5;
+}
+
+.cp-pencil-end {
+  width: 12px;
+  height: 20px;
+  border-radius: 10px 0 0 10px;
+  background: #c4d0dd;
+}
+
+.cp-pencil-body {
+  position: relative;
+  width: 155px;
+  height: 20px;
+  background: linear-gradient(#f9fbff, #c6d3e1);
+  border: 1px solid #a5b6c9;
+}
+
+.cp-pencil-tip {
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 21px solid #d8e3ef;
+}
+
+.cp-button-panel {
+  position: absolute;
+  left: 55px;
+  top: 1px;
+  width: 53px;
+  height: 17px;
+  display: flex;
+  background: #28384b;
+  border: 1px solid #71869c;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cp-button {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.cp-copy-button {
+  border-right: 1px solid #71869c;
+  animation: cp-press-copy 5.5s forwards;
+}
+
+.cp-paste-button {
+  animation: cp-press-paste 5.5s forwards;
+}
+
+.cp-transfer-label {
+  position: absolute;
+  bottom: 0;
+  font-size: 10px;
+  color: #b5d8ff;
+  text-align: center;
+  opacity: 0;
+  animation: cp-show-transfer 5.5s forwards;
+}
+
+.cp-laptop-screen {
+  padding: 7px;
+  border: 5px solid #62768f;
+  border-radius: 12px 12px 4px 4px;
+  background: #26364a;
+}
+
+.cp-laptop-base {
+  height: 12px;
+  width: 112%;
+  margin-left: -6%;
+  border-radius: 2px 2px 14px 14px;
+  background: linear-gradient(#a9bacd, #62758b);
+}
+
+.cp-pasted {
+  opacity: 0;
+  color: #8fe3bd;
+  animation: cp-show-paste 5.5s forwards;
+}
+
+.cp-paste-feedback {
+  animation: cp-show-paste 5.5s forwards;
+}
+
+.cp-demo-note {
+  margin: 25px 0 0;
+  color: #93a9c3;
+  font-size: 11px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ANIMATION TIMELINE */
+
+@keyframes cp-select {
+  0%, 10% { background: transparent; }
+  20%, 100% { background: rgba(100, 190, 255, .25); }
+}
+
+@keyframes cp-press-copy {
+  0%, 25%, 36%, 100% { background: transparent; }
+  28%, 33% { background: #3294e6; }
+}
+
+@keyframes cp-press-paste {
+  0%, 72%, 84%, 100% { background: transparent; }
+  75%, 81% { background: #3294e6; }
+}
+
+@keyframes cp-show-copy {
+  0%, 30% { opacity: 0; }
+  40%, 100% { opacity: 1; }
+}
+
+@keyframes cp-travel {
+  0%, 35% {
+    transform: translateX(-28px) rotate(-35deg);
+  }
+  72%, 100% {
+    transform: translateX(28px) rotate(-35deg);
+  }
+}
+
+@keyframes cp-show-transfer {
+  0%, 35% { opacity: 0; }
+  45%, 70% { opacity: 1; }
+  85%, 100% { opacity: 0; }
+}
+
+@keyframes cp-show-paste {
+  0%, 78% { opacity: 0; }
+  88%, 100% { opacity: 1; }
+}
+
+@media (max-width: 700px) {
+  .cp-demo {
+    padding: 24px 12px;
+  }
+
+  .cp-scene {
+    gap: 8px;
+    min-height: 220px;
+  }
+
+  .cp-device {
+    width: 38%;
+  }
+
+  .cp-pencil-area {
+    width: 20%;
+  }
+
+  .cp-pencil {
+    transform: scale(.65) rotate(-35deg);
+    animation: none;
+  }
+
+  .cp-device-label {
+    font-size: 8px;
+    letter-spacing: .5px;
+  }
+
+  .cp-screen {
+    padding: 12px 5px;
+    min-height: 120px;
+  }
+
+  .cp-code {
+    font-size: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-demo *,
+  .cp-demo *::before,
+  .cp-demo *::after {
+    animation: none !important;
+  }
+
+  .cp-highlight {
+    background: rgba(100, 190, 255, .25);
+  }
+
+  .cp-feedback,
+  .cp-paste-feedback,
+  .cp-pasted {
+    opacity: 1;
+  }
+}
